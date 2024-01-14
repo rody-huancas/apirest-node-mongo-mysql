@@ -1,10 +1,9 @@
 import Router  from "express"
+import { createItem, getItems } from "../controllers/tracks.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    const data =  ["Hola", "mundo"]
-    res.send({data})
-});
+router.get("/", getItems);
+router.post("/", createItem);
 
 export default router;
