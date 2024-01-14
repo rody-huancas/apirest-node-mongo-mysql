@@ -1,29 +1,33 @@
+import { matchedData } from 'express-validator'
 import models from "../models/index.js";
+import { handleHttpError } from "../utils/handleError.js";
 const { tracksModel } = models;
 
 
 const getItems = async (req, res) => {
     try {
         const data = await tracksModel.find({});
-        console.log(data);
         res.send({ data });
     } catch (error) {
-        console.error(error);
-        res.status(500).send({ error: "Internal Server Error" });
+        handleHttpError(res, "ERROR_GET_ITEMS")
     }
 };
 
 
 // obtener un registro
 const getItem = async (req, res) => {
-    
-}   
+
+}
 
 // crear un registro
 const createItem = async (req, res) => {
-    const { body } = req;
-    const data = await tracksModel.create(body);
-    res.send({ data });
+    try {
+        const body = matchedData(req);
+        const data = await tracksModel.create(body);
+        res.send({ data });
+    } catch (error) {
+        handleHttpError(res, "ERROR_CREATE_ITEM")
+    }
 }
 
 // actualizar un registro
