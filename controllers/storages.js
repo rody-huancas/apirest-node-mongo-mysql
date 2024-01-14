@@ -3,15 +3,6 @@ import models from "../models/index.js";
 const { storagesModel } = models;
 const PUBLIC_URL = process.env.PUBLIC_URL;
 
-const getItems = async (req, res) => {
-
-};
-
-// obtener un registro
-const getItem = async (req, res) => {
-
-}
-
 // crear un registro
 const createItem = async (req, res) => {
     const { body, file } = req;
@@ -25,20 +16,6 @@ const createItem = async (req, res) => {
     res.send({ data })
 }
 
-// actualizar un registro
-const updateItem = async (req, res) => {
-
-}
-
-// eliminar un registro
-const deleteItem = async (req, res) => {
-
-}
-
 export {
-    getItems,
-    getItem,
-    createItem,
-    updateItem,
-    deleteItem
+    createItem
 }
