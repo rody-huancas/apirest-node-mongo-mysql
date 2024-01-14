@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json())
+app.use(express.static("storage")); // archivos que serán publicos
 
 // rutas
 app.use("/api", routes);
