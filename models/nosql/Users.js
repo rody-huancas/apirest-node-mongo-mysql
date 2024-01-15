@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import MongooseDelete from 'mongoose-delete';
 
 const UserSchema = new mongoose.Schema (
     {
@@ -26,5 +27,6 @@ const UserSchema = new mongoose.Schema (
     }
 );
 
+UserSchema.plugin(MongooseDelete, { overrideMethods: 'all' });
 const User = mongoose.model("users", UserSchema);
 export default User;

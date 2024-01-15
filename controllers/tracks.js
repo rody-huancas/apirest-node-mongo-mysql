@@ -3,6 +3,7 @@ import models from "../models/index.js";
 import { handleHttpError } from "../utils/handleError.js";
 const { tracksModel } = models;
 
+// Listar los registros
 const getItems = async (req, res) => {
     try {
         const data = await tracksModel.find({});
@@ -51,7 +52,7 @@ const deleteItem = async (req, res) => {
     try {
         req = matchedData(req)
         const { id } = req;
-        const data = await tracksModel.deleteOne({ _id: id });
+        const data = await tracksModel.delete({ _id: id });
         res.send({ data });
     } catch (error) {
         handleHttpError(res, `[ERROR_DELETE_ITEM]: ${error.message}`);
