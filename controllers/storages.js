@@ -42,7 +42,7 @@ const createItem = async (req, res) => {
         const data = await storagesModel.create(fileData)
         res.send({ data })
     } catch (error) {
-        handleHttpError(res, `[ERROR_DETAIL_ITEM]: ${error.message}`);
+        handleHttpError(res, `[ERROR_CREATE_ITEM]: ${error.message}`);
     }
 }
 
@@ -67,7 +67,6 @@ const deleteItem = async (req, res) => {
         handleHttpError(res, `[ERROR_DETAIL_ITEM]: ${error.message}`);
     }
 }
-
 
 export {
     getItems,
