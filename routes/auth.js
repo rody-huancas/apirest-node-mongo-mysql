@@ -1,19 +1,10 @@
 import Router from "express";
-import { matchedData } from "express-validator";
+import { loginCtrl, registerCtrl } from "../controllers/auth.js";
 import { validatorLogin, validatorRegister } from "../validators/auth.js";
-import { encrypt, compare } from "../utils/handlePasswod.js";
-import models from "../models/index.js";
-const { usersModel } = models;
 
 const router = Router();
 
-router.post("/register", validatorRegister, async (req, res) => {
-  req = matchedData(req);
-  const password = await encrypt(req.password);
-  const body = { ...req, password };
-  const data = await usersModel.create(body);
-  data.set("password", undefined, { strict: false });
-  res.send({ data });
-});
+router.post("/register", validatorRegister, registerCtrl);
+router.post("/login", validatorLogin, loginCtrl);
 
 export default router;
